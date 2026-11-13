@@ -8,10 +8,9 @@ jobs:
     name: Library - Python ${{ matrix.python }} on ${{ matrix.os }}
     strategy:
       matrix:
-        # No macOS: typed-ast (pinned mypy 0.812) does not compile against the
-        # runners' macOS Python 3.9. The brew job still covers macOS.
+        # macOS is covered by the brew job.
         os: [ubuntu, windows]
-        python: ['3.9']
+        python: ['3.11']
       max-parallel: 4
       fail-fast: false
     steps:
