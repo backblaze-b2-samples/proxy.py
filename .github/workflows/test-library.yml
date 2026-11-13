@@ -9,13 +9,13 @@ jobs:
     strategy:
       matrix:
         os: [macOS, ubuntu, windows]
-        python: [3.6, 3.7, 3.8]
+        python: ['3.9']
       max-parallel: 4
       fail-fast: false
     steps:
       - uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2.8.0
       - name: Setup Python
-        uses: actions/setup-python@0f07f7f756721ebd886c2462646a35f78a8bc4de # v1.2.4
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: ${{ matrix.python }}
       - name: Install dependencies
@@ -29,10 +29,6 @@ jobs:
           mypy --strict --ignore-missing-imports proxy/ tests/ setup.py
       - name: Run Tests
         run: pytest --cov=proxy tests/
-      - name: Upload coverage to Codecov
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        run: codecov
       - name: Integration testing
         if: matrix.os != 'windows'
         run: |
