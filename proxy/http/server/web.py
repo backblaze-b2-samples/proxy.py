@@ -182,10 +182,10 @@ class HttpWebServerPlugin(HttpProtocolHandlerPlugin):
         return True
 
     def write_to_descriptors(self, w: Writables) -> bool:
-        pass
+        return False
 
     def read_from_descriptors(self, r: Readables) -> bool:
-        pass
+        return False
 
     def on_client_data(self, raw: memoryview) -> Optional[memoryview]:
         if self.switched_protocol == httpProtocolTypes.WEBSOCKET:
